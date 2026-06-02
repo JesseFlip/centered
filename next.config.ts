@@ -1,4 +1,13 @@
 import type { NextConfig } from 'next';
+import withSerwistInit from '@serwist/next';
+
+const withSerwist = withSerwistInit({
+  swSrc: 'app/sw.ts',
+  swDest: 'public/sw.js',
+  cacheOnNavigation: true,
+  reloadOnOnline: false,
+  disable: process.env.NODE_ENV === 'development',
+});
 
 const nextConfig: NextConfig = {
   // Enable React Compiler (stable in Next.js 16)
@@ -7,4 +16,4 @@ const nextConfig: NextConfig = {
   experimental: {},
 };
 
-export default nextConfig;
+export default withSerwist(nextConfig);
